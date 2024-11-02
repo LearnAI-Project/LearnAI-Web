@@ -44,7 +44,7 @@ export const PasswordField = ({
 
   return (
     <div className="form__field">
-      <div className="d-flex justify-between gap-2 interactive--xl">
+      <div className="label__container interactive--xl">
         <label>{labelTexts[type].label}</label>
         {type === "linked" && (
           <Link className="link" to={url}>

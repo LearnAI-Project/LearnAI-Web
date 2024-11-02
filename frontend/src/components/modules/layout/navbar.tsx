@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import { GithubIcon } from "../elements/icons";
+import { GithubIcon } from "../../modules/elements/icons";
 
 export const Navbar = () => {
   return (
     <nav className="navbar">
       <div>Logo</div>
       <ul>
-        <li>Link</li>
         <li>Link</li>
       </ul>
       <ul>

@@ -28,6 +28,13 @@
   }
 }
 
+.label__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0;
+}
+
 .banner {
   position: relative;
   height: calc(var(--size) * 128);
@@ -55,4 +62,10 @@
   height: 100%;
   padding: calc(var(--size) * 4);
   background-color: var(--secondary-background);
+}
+
+@media (min-width: 1024px) {
+  .label__container {
+    gap: calc(var(--size) * 5);
+  }
 }

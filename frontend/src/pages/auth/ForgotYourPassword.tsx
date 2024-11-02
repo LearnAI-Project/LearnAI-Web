@@ -1,6 +1,6 @@
-import { DefaultField } from "../../components/components/FormField";
-import { Navbar } from "../../components/layout/navbar";
-import { SubmitButton } from "../../components/elements/buttons";
+import { DefaultField } from "../../components/modules/components/FormField";
+import { Navbar } from "../../components/modules/layout/navbar";
+import { SubmitButton } from "../../components/modules/elements/buttons";
 
 export const ForgotYourPassword = () => {
   return (
@@ -8,12 +8,12 @@ export const ForgotYourPassword = () => {
       <header>
         <Navbar />
       </header>
-      <main className="flexbox flexbox--center">
+      <main className="flexbox flexbox--center main">
         <section className="container container--auth">
-          <div className="subcontainer--auth d-flex f-col gap-1">
+          <div className="subcontainer--auth">
             <div className="d-flex f-col gap-1">
               <h1 className="title--lg">Recupera tu cuenta</h1>
-              <p className="interactive--xl">
+              <p style={{color: "var(--neutral-700)"}} className="interactive--xl">
                 Ingresa el código que enviamos a tu correo electrónico.
               </p>
             </div>
@@ -22,7 +22,7 @@ export const ForgotYourPassword = () => {
               <SubmitButton type="default" text="Ingresar" />
             </form>
           </div>
-          <div className="subcontainer--auth">
+          <div className="subcontainer__img--auth">
             <img
               height="400"
               src="https://st2.depositphotos.com/2419757/43548/v/450/depositphotos_435482738-stock-illustration-business-person-sitting-at-table.jpg"

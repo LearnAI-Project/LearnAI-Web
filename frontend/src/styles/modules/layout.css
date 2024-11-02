@@ -8,7 +8,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: calc(var(--size) * 2.5) calc(var(--size) * 40);
+  padding: calc(var(--size) * 2.5) calc(var(--size) * 7.5);
   background-color: var(--transparent-30);
 
   & > ul {
@@ -17,8 +17,11 @@
   }
 }
 
+.main {
+  padding: calc(var(--size) * 2.5);
+}
 .container {
-  max-width: var(--max-width);
+  max-width: calc(var(--max-width) * 0.375);
   padding-inline: calc(var(--size) * 4);
   margin-inline: auto;
 }
@@ -29,19 +32,10 @@
   flex: 1;
   background-color: var(--primary-100);
   color: var(--light-primary-text);
-  padding: calc(var(--size) * 10);
+  padding: calc(var(--size) * 2.5);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow--md);
-  & > .subcontainer--auth {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: calc(var(--size) * 7.5);
-    gap: calc(var(--size) * 5);
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-  }
+
   & h1,
   p {
     margin: 0;
@@ -49,6 +43,21 @@
   & a {
     color: var(--primary-500);
   }
+}
+
+.subcontainer--auth {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--size) * 7.5) calc(var(--size) * 5);
+  gap: calc(var(--size) * 5);
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+}
+
+.subcontainer__img--auth {
+  display: none;
 }
 
 .form {
@@ -80,4 +89,37 @@
 
 .g-layout--auto-fit-columns {
   grid-template-columns: repeat(auto-fit, minmax(calc(var(--size) * 64), 1fr));
+}
+
+@media (min-width: 1024px) {
+  .navbar {
+    padding: calc(var(--size) * 2.5) calc(var(--size) * 40);
+  }
+
+  .container {
+    max-width: var(--max-width);
+  }
+  .container--auth {
+    padding: calc(var(--size) * 10);
+  }
+
+  .subcontainer--auth {
+    padding: calc(var(--size) * 7.5);
+  }
+  .subcontainer__img--auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background-color: var(--white);
+    gap: calc(var(--size) * 5);
+  }
+}
+
+#root {
+  min-height: 100dvh;
+  max-width: 100dvw;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  accent-color: var(--primary-600);
 }

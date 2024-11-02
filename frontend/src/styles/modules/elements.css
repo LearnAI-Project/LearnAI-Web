@@ -213,3 +213,7 @@
   border-color: var(--secondary);
   color: var(--secondary);
 }
+
+hr {
+  border-color: var(--neutral-500);
+}

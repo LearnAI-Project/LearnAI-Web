@@ -6,6 +6,10 @@
   flex-direction: column;
 }
 
+.f-wrap {
+  flex-wrap: wrap;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -28,8 +32,4 @@
 
 .c-secondary {
   color: var(--secondary-text);
-}
-
-.w-full {
-  width: 100%;
 }
