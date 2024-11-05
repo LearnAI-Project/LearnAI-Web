@@ -8,7 +8,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: calc(var(--size) * 2.5) calc(var(--size) * 7.5);
+  padding: calc(var(--size) * 2) calc(var(--size) * 7.5);
   background-color: var(--transparent-30);
 
   & > ul {
@@ -50,7 +50,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: calc(var(--size) * 7.5) calc(var(--size) * 5);
+  padding: calc(var(--size) * 6.25) calc(var(--size) * 5);
   gap: calc(var(--size) * 5);
   background-color: var(--white);
   border-radius: var(--border-radius);
@@ -100,7 +100,7 @@
     max-width: var(--max-width);
   }
   .container--auth {
-    padding: calc(var(--size) * 10);
+    padding: calc(var(--size) * 8.75);
   }
 
   .subcontainer--auth {
@@ -114,12 +114,4 @@
     background-color: var(--white);
     gap: calc(var(--size) * 5);
   }
-}
-
-#root {
-  min-height: 100dvh;
-  max-width: 100dvw;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  accent-color: var(--primary-600);
 }

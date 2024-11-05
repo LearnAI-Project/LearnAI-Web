@@ -1,11 +1,18 @@
+import { ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 
 export const DefaultField = ({
   text,
   type,
+  value,
+  name,
+  onChange,
 }: {
   text: string;
   type: "text" | "email";
+  value: string;
+  name: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
     <div className="form__field">
@@ -14,6 +21,9 @@ export const DefaultField = ({
         className="input input--form interactive--lg"
         type={type}
         placeholder={"Ingresa tu " + text.toLowerCase()}
+        name={name}
+        value={value}
+        onChange={onChange}
         required
       />
     </div>
@@ -23,9 +33,15 @@ export const DefaultField = ({
 export const PasswordField = ({
   url,
   type,
+  value,
+  name,
+  onChange,
 }: {
-  url: string;
+  url?: string;
   type: "default" | "repeated" | "linked";
+  value: string;
+  name: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }) => {
   const labelTexts = {
     default: {
@@ -46,7 +62,7 @@ export const PasswordField = ({
     <div className="form__field">
       <div className="label__container interactive--xl">
         <label>{labelTexts[type].label}</label>
-        {type === "linked" && (
+        {type === "linked" && url && (
           <Link className="link" to={url}>
             ¿Has olvidado tu contraseña?
           </Link>
@@ -56,6 +72,9 @@ export const PasswordField = ({
         className="input input--form interactive--lg"
         type="password"
         placeholder={labelTexts[type].placeholder}
+        name={name}
+        value={value}
+        onChange={onChange}
         required
       />
     </div>

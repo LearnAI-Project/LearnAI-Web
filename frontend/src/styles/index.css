@@ -4,6 +4,13 @@
 @import url("./modules/layout.css");
 @import url("./modules/utils.css");
 
+#root {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  accent-color: var(--primary-600);
+}
+
 /* montserrat-500 - latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */

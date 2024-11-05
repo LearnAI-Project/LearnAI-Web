@@ -1,12 +1,68 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useState, ChangeEvent, FormEvent } from "react";
 import {
   DefaultField,
   PasswordField,
 } from "../../components/modules/components/FormField";
 import { Navbar } from "../../components/modules/layout/navbar";
 import { SubmitButton } from "../../components/modules/elements/buttons";
+import { useAuth } from "../../components/context/auth/UseAuth";
+import { Api } from "../../components/misc/Api";
+import { handleLogError } from "../../components/misc/Helpers";
+import { AxiosError } from "axios";
 
-export const Login = () => {
+interface AuthUser {
+  id: string;
+  name: string;
+  authdata: string;
+}
+
+const Login: React.FC = () => {
+  const Auth = useAuth();
+  const isLoggedIn = Auth.userIsAuthenticated();
+
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const [isError, setIsError] = useState<boolean>(false);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const { username, password } = formData;
+
+    if (!username || !password) {
+      setIsError(true);
+      return;
+    }
+
+    try {
+      const response = await Api.authenticate({ username, password });
+      const { id, name } = response.data;
+      const authdata = window.btoa(`${username}:${password}`);
+      const authenticatedUser: AuthUser = { id, name, authdata };
+
+      Auth.userLogin(authenticatedUser);
+
+      setFormData({ username: "", password: "" });
+
+      setIsError(false);
+    } catch (error) {
+      handleLogError(error as AxiosError);
+      setIsError(true);
+    }
+  };
+
+  if (isLoggedIn) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <>
       <header>
@@ -24,9 +80,21 @@ export const Login = () => {
                 </Link>
               </p>
             </div>
-            <form className="form form--auth" action="/" method="">
-              <DefaultField text="Correo" type="text" />
-              <PasswordField url="/forgot-your-password" type="linked"/>
+            <form className="form form--auth" onSubmit={handleSubmit}>
+              <DefaultField
+                text="Usuario"
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleInputChange}
+              />
+              <PasswordField
+                url="/forgot-your-password"
+                type="linked"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
               <div className="form__field form__field--rememberme">
                 <input className="" type="checkbox" />
                 <label className="interactive--lg">Recuérdame</label>
@@ -44,6 +112,7 @@ export const Login = () => {
             >
               <SubmitButton type="google" text="Ingresar con Google" />
             </form>
+            {isError && <p>The username or password provided are incorrect!</p>}
           </div>
           <div className="subcontainer__img--auth">
             <img
@@ -57,3 +126,5 @@ export const Login = () => {
     </>
   );
 };
+
+export default Login;
